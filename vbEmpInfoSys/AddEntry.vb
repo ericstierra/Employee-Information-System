@@ -1,7 +1,8 @@
 ﻿Public Class AddEntry
     Private Sub btnPreview_Click(sender As Object, e As EventArgs) Handles btnPreview.Click
-        Dim GIncome, NIncome, Deductions, Incentives, Philhealth, GIncome4P, PwtPlus, PwtPlus2 As Double
+        Dim GIncome, NIncome, Deductions, Incentives, Philhealth, GIncome4P, PwtPlus, PwtPlus2, DailyRate As Double
         Incentives = Val(txtIncentives.Text)
+        DailyRate = Val(txtDailyRate.Text)
         GIncome = Val(txtNoOfWorkDays.Text * txtDailyRate.Text)
 
         'Condition to get Philhealth Deduction
@@ -9,21 +10,21 @@
         Philhealth = GIncome4P
 
         'Condition to get the Prescribed Withholding Tax plus Additional deductions
-        If GIncome <= 685 Then
+        If DailyRate <= 685 Then
             PwtPlus = 0
-        ElseIf GIncome > 685 AndAlso GIncome < 1095 Then
+        ElseIf DailyRate > 685 AndAlso DailyRate < 1095 Then
             PwtPlus2 = 685 * 0.2
             PwtPlus = 0 + PwtPlus2
-        ElseIf GIncome > 1096 AndAlso GIncome < 2191 Then
+        ElseIf DailyRate > 1096 AndAlso DailyRate < 2191 Then
             PwtPlus2 = 1096 * 0.25
             PwtPlus = 82.19 + PwtPlus2
-        ElseIf GIncome > 2192 AndAlso GIncome < 5478 Then
+        ElseIf DailyRate > 2192 AndAlso DailyRate < 5478 Then
             PwtPlus2 = 2192 * 0.3
             PwtPlus = 356.16 + PwtPlus2
-        ElseIf GIncome > 5479 AndAlso GIncome < 21917 Then
+        ElseIf DailyRate > 5479 AndAlso DailyRate < 21917 Then
             PwtPlus2 = 5479 * 0.32
             PwtPlus = 1342.47 + PwtPlus2
-        ElseIf GIncome >= 21918 Then
+        ElseIf DailyRate >= 21918 Then
             PwtPlus2 = 21918 * 0.35
             PwtPlus = 6602.74 + PwtPlus2
         End If
